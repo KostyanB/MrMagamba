@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../image/logo.svg';
+import userImg from '../image/user 1.svg';
 
 
 const NavBarStyled = styled.header`
@@ -18,7 +19,7 @@ const NavBarStyled = styled.header`
     color: white;
 `;
 const Logo = styled.div`
-    display:flex;
+    display: flex;
     align-items: center;
 `;
 const H1 = styled.h1`
@@ -29,7 +30,7 @@ const H1 = styled.h1`
 const ImgLogo = styled.img`
     width: 50px;
 `;
-const Button = styled.button`
+const Login = styled.button`
     text-decoration: none;
     display: inline-block;
     padding: 6px 20px;
@@ -38,7 +39,6 @@ const Button = styled.button`
     background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
     background-position: 100% 0;
     background-size: 200% 200%;
-    font-family: Pacifico;
     font-size: 14px;
     color: #002878;
     box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
@@ -55,6 +55,8 @@ export const NavBar = () => (
             <ImgLogo src={logoImg} alt="logo"/>
             <H1>MrMagamba®</H1>
         </Logo>
-        <Button>ПОЕСТЬ</Button>
+        <Login>
+            <img src={userImg} alt="Поесть"></img>
+        </Login>
     </NavBarStyled>
 )
