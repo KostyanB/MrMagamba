@@ -15,7 +15,7 @@ const Item = styled.li`
     background-position: center;
     background-size: cover;
     margin-top: 30px;
-    margin-right: 30px;
+    margin-right: 20px;
     padding: 15px;
     font-size: 24px;
     color: #33d9de;

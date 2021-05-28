@@ -1,8 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../image/logo.svg';
-import userImg from '../image/user 1.svg';
-
+import userImg from '../image/user.svg';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -31,9 +30,21 @@ const ImgLogo = styled.img`
     width: 50px;
 `;
 const BtnLogin = styled.button`
-    display: inline-block;
+    display: block;
+    text-decoration: none;
+    border-radius: 30px;
+    background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
+    background-position: 100% 0;
+    background-size: 200% 200%;
+    color: #002878;
+    box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
+    transition: .5s;
     margin: 0 30px;
     padding: 6px 20px;
+    :hover {
+        box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
+        background-position: 0 0;
+    }
 `;
 
 export const NavBar = () => (
