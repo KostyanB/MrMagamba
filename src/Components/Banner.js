@@ -8,4 +8,3 @@ export const Banner = styled.div`
     background-position: center;
     background-size: cover;
 `;
-

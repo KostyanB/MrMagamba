@@ -3,7 +3,7 @@ import styled from 'styled-components';
 
 const List = styled.ul`
     display: flex;
-    justyfy-content: space-around; {/*для переноса элем на нов строку*/}
+    justify-content: space-around; {/*для переноса элем на нов строку*/}
     flex-wrap: wrap;
 
 `;
@@ -17,8 +17,8 @@ const Item = styled.li`
     margin-top: 30px;
     margin-right: 30px;
     padding: 15px;
-    font-size: 30px;
-    color: white;
+    font-size: 24px;
+    color: #33d9de;
     z-index: 1;
     &:hover {
         cursor: pointer;
@@ -40,10 +40,13 @@ const Item = styled.li`
     }
 `;
 
-export const ListItem = ({ itemList }) => (
+export const ListItem = ({ itemList, setOpenItem }) => (
     <List>
         {itemList.map(item => (
-            <Item key={item.id} img={item.img}>  {/*key for rerender autentification objects*/}
+            <Item    /*key for rerender autentification objects*/
+                key={item.id}
+                img={item.img}
+                onClick={() => setOpenItem(item)}>
                 <p>{item.name}</p>
                 <p>{item.price.toLocaleString('ru-RU',
                 {style: 'currency', currency: 'RUB'})}</p>
