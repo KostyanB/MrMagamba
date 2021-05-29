@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import trashImg from '../image/trash.svg';
+import trashImg from '../../image/trash.svg';
+import { totalPriceItems } from '../Modal/ModalItem';
 
 const TrashButton = styled.button`
     width: 24px;
@@ -12,7 +13,6 @@ const TrashButton = styled.button`
     background-size: cover;
     background-repeat: no-repeat;
 `;
-
 const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
@@ -20,7 +20,6 @@ const OrderItemStyled = styled.li`
 const ItemName = styled.span`
     flex-grow: 1;
 `;
-
 const ItemPrice = styled.span`
     margin-left: 20px;
     margin-right: 10px;
@@ -28,11 +27,12 @@ const ItemPrice = styled.span`
     text-align: right;
 `;
 
-export const OrderListItem = () => (
+export const OrderListItem = ( { order }) => (
     <OrderItemStyled>
-        <ItemName>JS Burger</ItemName>
-        <span>2</span>
-        <ItemPrice>750 P</ItemPrice>
+        <ItemName>{order.name}</ItemName>
+        <span>{order.count}</span>
+        <ItemPrice>{totalPriceItems(order).toLocaleString('ru-RU',
+            {style: 'currency', currency: 'RUB'})}</ItemPrice>
         <TrashButton/>
     </OrderItemStyled>
 

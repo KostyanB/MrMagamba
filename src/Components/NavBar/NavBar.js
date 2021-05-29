@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import logoImg from '../image/logo.svg';
-import userImg from '../image/user.svg';
+import logoImg from '../../image/logo.svg';
+import userImg from '../../image/user.svg';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -9,7 +9,7 @@ const NavBarStyled = styled.header`
     left: 0;
     z-index: 999;
     height: 80px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +39,6 @@ const BtnLogin = styled.button`
     color: #002878;
     box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
     transition: .5s;
-    margin: 0 30px;
     padding: 6px 20px;
     :hover {
         box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);

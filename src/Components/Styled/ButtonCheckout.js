@@ -18,5 +18,5 @@ export const ButtonCheckout = styled.button`
     :hover {
         box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
         background-position: 0 0;
-    }
+        }
 `;

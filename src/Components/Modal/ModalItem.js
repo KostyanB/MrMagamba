@@ -1,6 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonCheckout } from './ButtonCheckout';
+import { ButtonCheckout } from '../Styled/ButtonCheckout';
+import { CountItem } from './CountItem';
+import { useCount } from '../Hooks/useCount';
 
 const Overlay = styled.div`
     position: fixed;
@@ -19,7 +21,6 @@ const Modal = styled.div`
     width: 600px;
     height: 600px;
 `;
-
 const Banner = styled.div`
     width: 100%;
     height: 200px;
@@ -27,7 +28,6 @@ const Banner = styled.div`
     background-size: cover;
     background-position: center;
 `;
-
 const Content = styled.section `
     display: flex;
     flex-direction: column;
@@ -43,15 +43,34 @@ const HeaderContent = styled.div `
     font-family: 'Pacifico', cursive;
     color: #002878;
 `;
+const TotalPriceItem = styled.div `
+    display: flex;
+    justify-content: space-between;
 
-export const ModalItem = ({ openItem, setOpenItem }) => {
-    function closeModal(e) {
+`;
+
+export const totalPriceItems = order => order.price * (order.count < 1 ? 1 : order.count > 100 ? 100 : order.count);
+
+export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+
+    const counter = useCount();
+
+    const closeModal = e => {
         if(e.target.id === 'overlay') {
             setOpenItem(null);
         }
     }
+    const order = {
+        ...openItem, // передали все свойства
+        count: counter.count
+    };
 
-    if(!openItem) return null;
+    const addToOrder = () => {
+        setOrders([...orders, order]); //новый заказ в конец массива старых
+        setOpenItem(null); //закрыли модалку
+    }
+
+
     return (
         <Overlay id="overlay" onClick={closeModal}>
             <Modal>
@@ -59,11 +78,15 @@ export const ModalItem = ({ openItem, setOpenItem }) => {
                 <Content>
                     <HeaderContent>
                         <div>{openItem.name}</div>
-                        <div>{openItem.price.toLocaleString('ru-RU',
-                            {style: 'currency', currency: 'RUB'})}
-                        </div>
+                        <div>{openItem.price}</div>
                     </HeaderContent>
-                     <ButtonCheckout>Добавить</ButtonCheckout>
+                    <CountItem {...counter}/>
+                    <TotalPriceItem>
+                        <span>Цена</span>
+                        <span>{totalPriceItems(order).toLocaleString('ru-RU',
+                            {style: 'currency', currency: 'RUB'})}</span>
+                    </TotalPriceItem>
+                    <ButtonCheckout onClick={addToOrder}>Добавить</ButtonCheckout>
                 </Content>
             </Modal>
         </Overlay>
