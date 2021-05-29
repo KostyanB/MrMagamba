@@ -15,7 +15,8 @@ const NavBarStyled = styled.header`
     align-items: center;
     padding: 15px;
     background-color: #33d9de;
-    color: white;
+    box-shadow: 0px 4px 5px rgba(0, 40, 120, 0.25);
+    color: #002878;
 `;
 const Logo = styled.div`
     display: flex;
@@ -24,13 +25,12 @@ const Logo = styled.div`
 const H1 = styled.h1`
     font-size: 30px;
     margin-left: 15px;
-    color: #002878;
 `;
 const ImgLogo = styled.img`
-    width: 50px;
+    width: 70px;
 `;
 const BtnLogin = styled.button`
-    display: block;
+    display: inline-block;
     text-decoration: none;
     border-radius: 30px;
     background-image: linear-gradient(45deg, #6ab1d7 0%, #33d9de 50%, #002878 100%);
@@ -39,11 +39,16 @@ const BtnLogin = styled.button`
     color: #002878;
     box-shadow: 0 16px 32px 0 rgba(0, 40, 120, .35);
     transition: .5s;
-    padding: 6px 20px;
+    padding: 8px 12px;
+    margin-left: 10px;
     :hover {
         box-shadow: 0 0 0 0 rgba(0, 40, 120, 0);
         background-position: 0 0;
     }
+`;
+const LogIn = styled.div`
+    display: flex;
+    align-items: center;
 `;
 
 export const NavBar = () => (
@@ -52,8 +57,12 @@ export const NavBar = () => (
             <ImgLogo src={logoImg} alt="logo"/>
             <H1>MrMagamba®</H1>
         </Logo>
-        <BtnLogin>
-            <img src={userImg} alt="Поесть"></img>
-        </BtnLogin>
+        <LogIn>
+            <span>Войти</span>
+            <BtnLogin>
+                <img src={userImg} alt="Поесть"></img>
+            </BtnLogin>
+        </LogIn>
+
     </NavBarStyled>
 )

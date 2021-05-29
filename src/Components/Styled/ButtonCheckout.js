@@ -6,7 +6,6 @@ export const ButtonCheckout = styled.button`
     margin: 0 auto;
     padding: 3px 30px;
     font-size: inherit;
-    font-family: 'Pacifico', cursive;
     text-decoration: none;
     color: #002878;
     border-radius: 30px;

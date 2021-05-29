@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const CountWrapper = styled.div`
     display: flex;
     justify-content: space-between;
+    color: #002878;
 `;
 const CountInput = styled.input`
     width: 40px;
@@ -28,7 +29,8 @@ export function CountItem({ count, setCount, onChange }) {
             <span>Количество</span>
             <div>
                 <ButtonCount disabled={count <= 1} onClick={() => setCount(count - 1)}>-</ButtonCount>
-                <CountInput type='number' max='100' value={count < 1 ? 1 : count > 100 ? 100 : count} onChange={onChange}/>
+                <CountInput type='number' min='1' max='100' onChange={onChange}
+                            value={(count < 1) ? 1 : (count > 100) ? 100 : count}/>
                 <ButtonCount onClick={() => setCount(count + 1)}>+</ButtonCount>
             </div>
         </CountWrapper>
