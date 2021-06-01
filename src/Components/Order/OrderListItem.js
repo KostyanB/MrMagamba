@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 import trashImg from '../../image/trash.svg';
 import { formatCurrency } from '../Functions/secondaryFunc';
@@ -18,6 +18,8 @@ const OrderItemStyled = styled.li`
     display: flex;
     margin: 15px 0;
     flex-wrap: wrap;
+    cursor: pointer;
+
 `;
 const ItemName = styled.span`
     flex-grow: 1;
@@ -39,26 +41,22 @@ const Choices = styled.div`
     width: 100%;
 `;
 
-export const OrderListItem = ( { order }) => {
+export const OrderListItem = ( { order, index, deleteItem, setOpenItem }) => {
     const topping = order.topping.filter(item => item.checked)
         .map(item => item.name).join(', ');
 
-
+    const refDelBtn = useRef(null); //стандарт хук не рендерит(сохр ссылку на эл-т)
 
     return (
-        <OrderItemStyled>
+        <OrderItemStyled onClick={(e) => e.target !== refDelBtn.current &&
+                        setOpenItem({...order, index})}> {/*откр модал кликом по заказу*/}
             <ItemName>{order.name}</ItemName>
             <span>{order.count}</span>
             <ItemPrice>{formatCurrency(totalPriceItems(order))}</ItemPrice>
-            <TrashButton/>
+            <TrashButton ref={refDelBtn} onClick={() => deleteItem(index)}/>
             {topping && <Toppings>Добавки: {topping}</Toppings>}
-            {order.choice && <Choices>Выбрано: {order.choice}</Choices>}
+            {order.choice && <Choices>Ваш выбор: {order.choice}</Choices>}
 
         </OrderItemStyled>
-
-
-
-
     )
 };
-

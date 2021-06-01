@@ -9,8 +9,9 @@ const getTopping = toppings => toppings.map(item => ({
 
 export function useToppings(openItem) {
 
-    const readyTopping = openItem.toppings ?
-        getTopping(openItem.toppings) : []; //наличие топпингов?
+    const readyTopping = openItem.topping ? openItem.topping : //были  -их и вернем
+                        openItem.toppings ? getTopping(openItem.toppings) :
+                        []; //наличие топпингов?
     const [toppings, setToppings] = useState(readyTopping);
 
     const checkToppings = index => {

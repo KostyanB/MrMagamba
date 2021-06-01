@@ -3,8 +3,9 @@ import styled from 'styled-components';
 export const ButtonCheckout = styled.button`
     position: relative;
     display: block;
+    width: fit-content;
     margin: 0 auto;
-    padding: 3px 30px;
+    padding: 8px 15px;
     font-size: inherit;
     text-decoration: none;
     color: #002878;

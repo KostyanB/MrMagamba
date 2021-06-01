@@ -7,23 +7,19 @@ import { Order } from './Components/Order/Order';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 
-
 function App() {
 
   const openItem = useOpenItem();
   const orders = useOrders();
 
-
   return (
     <>
       <GlobalStyle/>
       <NavBar/>
-      <Order {...orders}/>
+      <Order {...orders} {...openItem}/>
       <Menu {...openItem}/>
       { openItem.openItem && <ModalItem {...openItem} {...orders}/> } {/*верстка будет если есть openItem*/}
-
     </>
-
   );
 }
 

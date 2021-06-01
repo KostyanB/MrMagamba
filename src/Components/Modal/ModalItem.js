@@ -10,7 +10,6 @@ import { useToppings } from '../Hooks/useToppings';
 import { Choices } from '../Modal/Choices';
 import { useChoices } from '../Hooks/useChoices';
 
-
 const Overlay = styled.div`
     position: fixed;
     display: flex;
@@ -58,9 +57,10 @@ const TotalPriceItem = styled.div `
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
-    const counter = useCount();
+    const counter = useCount(openItem.count); //передали исх количество при откр мод
     const toppings = useToppings(openItem);
     const choices = useChoices(openItem);
+    const isEdit = openItem.index > -1; //true если из заказов, из меню index - undef -> false
 
     const closeModal = e => {
         if(e.target.id === 'overlay') {
@@ -73,6 +73,13 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         topping: toppings.toppings,
         choice: choices.choice,
     };
+
+    const editOrder = () => {
+        const newOrders = [...orders];
+        newOrders[openItem.index] = order;
+        setOrders(newOrders);
+        setOpenItem(null);
+    }
 
     const addToOrder = () => {
         setOrders([...orders, order]); //новый заказ в конец массива старых
@@ -95,9 +102,10 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                         <span>Цена</span>
                         <span>{formatCurrency(totalPriceItems(order))}</span>
                     </TotalPriceItem>
-                    <ButtonCheckout onClick={addToOrder}
-                                    disabled={order.choices && !order.choice}
-                                    >Добавить</ButtonCheckout>
+                    <ButtonCheckout
+                        onClick={isEdit ? editOrder : addToOrder}
+                        disabled={order.choices && !order.choice}
+                        >{isEdit ? 'Изменить' : 'Добавить'}</ButtonCheckout>
                 </Content>
             </Modal>
         </Overlay>
