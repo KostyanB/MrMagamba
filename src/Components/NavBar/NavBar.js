@@ -38,18 +38,23 @@ const Welcome = styled.p`
     margin-right: 10px;
 `;
 
-export const NavBar = () => (
+export const NavBar = ({ authentification, logIn, logOut }) => (
     <NavBarStyled>
         <Logo>
             <ImgLogo src={logoImg} alt="logo"/>
             <H1>MrMagamba®</H1>
         </Logo>
-        <LogIn>
+        {authentification ?
+        <LogIn onClick={logOut}>
+            <Welcome>{authentification.displayName}</Welcome>
+            <ButtonCheckout>X</ButtonCheckout>
+        </LogIn> :
+        <LogIn onClick={logIn}>
             <Welcome>Войти</Welcome>
             <ButtonCheckout>
                 <img src={userImg} alt="Поесть"></img>
             </ButtonCheckout>
         </LogIn>
-
+        }
     </NavBarStyled>
 )

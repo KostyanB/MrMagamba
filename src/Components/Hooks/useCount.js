@@ -2,9 +2,14 @@ import { useState } from 'react';
 
 export function useCount(startCount) {
     const [count, setCount] = useState(startCount || 1);
-    const onChange = e => {
-        const value = e.target.value < 1 ? 1 : e.target.value > 100 ? 100 : e.target.value;
+
+    const validCount = (value) => {
+        value = value < 1 ? 1 : value > 100 ? 100 : value;
         setCount(value);
     }
-    return {count, setCount, onChange};
+    const onChange = e => {
+        const value = e.target.value.replace(/^0+/, '');
+        validCount(value)
+    }
+    return {count, setCount, onChange, validCount};
 }

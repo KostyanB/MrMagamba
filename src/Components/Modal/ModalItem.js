@@ -10,6 +10,7 @@ import { useToppings } from '../Hooks/useToppings';
 import { Choices } from '../Modal/Choices';
 import { useChoices } from '../Hooks/useChoices';
 
+
 const Overlay = styled.div`
     position: fixed;
     display: flex;
@@ -54,6 +55,7 @@ const TotalPriceItem = styled.div `
     display: flex;
     justify-content: space-between;
 `;
+
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 

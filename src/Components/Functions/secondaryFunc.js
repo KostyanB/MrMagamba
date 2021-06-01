@@ -11,3 +11,4 @@ export const totalPriceItems = order => {
 
     return (order.price + priceTopping) * (order.count < 1 ? 1 : order.count > 100 ? 100 : order.count);
 }
+
