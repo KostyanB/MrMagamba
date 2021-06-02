@@ -1,28 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonCheckout } from '../Styled/ButtonCheckout';
+import { ButtonCheckout } from '../Styled/Buttons';
+import { Overlay } from '../Styled/Components';
 import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
-import { formatCurrency } from '../Functions/secondaryFunc';
-import { totalPriceItems } from '../Functions/secondaryFunc';
-import { Toppings } from '../Modal/Toppings';
 import { useToppings } from '../Hooks/useToppings';
-import { Choices } from '../Modal/Choices';
 import { useChoices } from '../Hooks/useChoices';
+import { formatCurrency, totalPriceItems } from '../Functions/secondaryFunc';
+import { Toppings } from '../Modal/Toppings';
+import { Choices } from '../Modal/Choices';
 
-
-const Overlay = styled.div`
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 40px;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, .5);
-    z-index: 20;
-`;
 const Modal = styled.div`
     background-color: #33d9de;
     width: 600px;
@@ -94,8 +81,6 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         setOrders([...orders, order]); //новый заказ в конец массива старых
         setOpenItem(null); //закрыли модалку
     }
-
-
 
     return (
         <Overlay id="overlay" onClick={closeModal}>

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../../image/logo.svg';
 import userImg from '../../image/user.svg';
-import { ButtonCheckout } from '../Styled/ButtonCheckout';
+import { ButtonLogIn, ButtonLogOut } from '../Styled/Buttons';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -30,12 +30,15 @@ const H1 = styled.h1`
 const ImgLogo = styled.img`
     width: 70px;
 `;
-const LogIn = styled.div`
+const UserLog = styled.div`
     display: flex;
     align-items: center;
+    margin-right: 20px;
 `;
 const Welcome = styled.p`
     margin-right: 10px;
+    width: 120px;
+    text-align: center;
 `;
 
 export const NavBar = ({ authentification, logIn, logOut }) => (
@@ -45,16 +48,16 @@ export const NavBar = ({ authentification, logIn, logOut }) => (
             <H1>MrMagamba®</H1>
         </Logo>
         {authentification ?
-        <LogIn onClick={logOut}>
+        <UserLog onClick={logOut}>
             <Welcome>{authentification.displayName}</Welcome>
-            <ButtonCheckout>X</ButtonCheckout>
-        </LogIn> :
-        <LogIn onClick={logIn}>
+            <ButtonLogOut>X</ButtonLogOut>
+        </UserLog> :
+        <UserLog onClick={logIn}>
             <Welcome>Войти</Welcome>
-            <ButtonCheckout>
+            <ButtonLogIn>
                 <img src={userImg} alt="Поесть"></img>
-            </ButtonCheckout>
-        </LogIn>
+            </ButtonLogIn>
+        </UserLog>
         }
     </NavBarStyled>
 )

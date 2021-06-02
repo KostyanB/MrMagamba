@@ -1,10 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ButtonCheckout } from '../Styled/ButtonCheckout';
+import { ButtonCheckout } from '../Styled/Buttons';
+import { OrderTitle, Total, TotalPrice } from '../Styled/Components';
 import { OrderListItem } from './OrderListItem';
-import { formatCurrency } from '../Functions/secondaryFunc';
-import { totalPriceItems } from '../Functions/secondaryFunc';
-import { projection } from '../Functions/secondaryFunc';
+import { formatCurrency, totalPriceItems, projection } from '../Functions/secondaryFunc';
 
 const OrderStyled = styled.section`
     position: fixed;
@@ -18,55 +17,24 @@ const OrderStyled = styled.section`
     box-shadow: 4px 0px 5px rgba(0, 40, 120, 0.25);
     padding: 20px;
 `;
-const OrderTitle = styled.h2`
-    text-align: center;
-    font-weight: 400;
-    line-height: 68px;
-    margin-bottom: 30px;
-`;
 const OrderContent = styled.div`
     flex-grow: 1; {/*растянуть контент */}
 `;
 const OrderList = styled.ul`
 
 `;
-const Total = styled.div`
-    display: flex;
-    margin: 0 35px 30px;
-    & span:first-child {
-        flex-grow: 1;
-    }
-`;
-const TotalPrice = styled.span`
-    text-align: right;
-    width: 120px;
-    margin-left: 5px;
-`;
 const EmptyList = styled.p`
     text-align: center;
 `;
-const rulesData = { // правила обработки заказа
-    itemName: ['name'],
-    price: ['price'],
-    count: ['count'],
-    topping: ['topping', arr => arr.filter(obj => obj.checked).map(obj => obj.name),
-            arr => arr.length ? arr : 'no topping'],
-    choice: ['choice', item => item ? item : 'no choices'],
-}
 
-export const Order = ({ orders, setOrders, setOpenItem, authentification, logIn, firebaseDatabase }) => {
-    const dataBase = firebaseDatabase();
-
-    const sendOrder = () => {
-        const newOrder = orders.map(projection(rulesData));
-
-        dataBase.ref('orders').push().set({
-            nameClient: authentification.displayName,
-            email: authentification.email,
-            order: newOrder
-        });
-        setOrders([]);
-    }
+export const Order = ({
+        orders,
+        setOrders,
+        setOpenItem,
+        authentification,
+        logIn,
+        setOpenOrderConfirm
+    }) => {
 
     const deleteItem = index => {
         const newOrders = orders.filter((item, i) => index !== i);
@@ -81,12 +49,12 @@ export const Order = ({ orders, setOrders, setOpenItem, authentification, logIn,
 
     const checkAuth = () => {
         if (authentification) {
-            sendOrder();
+            console.log(orders.length);
+            setOpenOrderConfirm(true);
         } else {
             logIn();
         }
     }
-
 
     return (
         <OrderStyled>
@@ -109,7 +77,10 @@ export const Order = ({ orders, setOrders, setOpenItem, authentification, logIn,
                 <span>{totalCounter} шт.</span>
                 <TotalPrice>{formatCurrency(total)}</TotalPrice>
             </Total>
-            <ButtonCheckout onClick={checkAuth}>Оформить</ButtonCheckout>
+            <ButtonCheckout onClick={checkAuth}
+                            disabled={orders.length === 0}>
+                Оформить
+            </ButtonCheckout>
         </OrderStyled>
     )
 }
