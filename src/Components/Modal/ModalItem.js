@@ -28,6 +28,7 @@ const Modal = styled.div`
     width: 600px;
     height: 600px;
     color: #002878;
+    /*transform: translateY(-5%);*/
     /*box-shadow: 0px 0px 5px 3px rgba(0, 40, 120, 0.3);*/
 `;
 const Banner = styled.div`
@@ -56,6 +57,12 @@ const TotalPriceItem = styled.div `
     justify-content: space-between;
 `;
 
+// const animModal = () =>{
+//     const modalForm = document.getElementById('modal');
+//     console.log('modalForm: ', modalForm);
+
+
+// }
 
 export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
 
@@ -88,9 +95,11 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
         setOpenItem(null); //закрыли модалку
     }
 
+
+
     return (
         <Overlay id="overlay" onClick={closeModal}>
-            <Modal>
+            <Modal id="modal">
                 <Banner img={openItem.img}/>
                 <Content>
                     <HeaderContent>
@@ -111,5 +120,6 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                 </Content>
             </Modal>
         </Overlay>
+
     )
 };

@@ -16,7 +16,7 @@ export function useAuth(authFirebase) {
         auth.onAuthStateChanged(user => {
             user ? setAuthentification(user) : setAuthentification(null);
         })
-    }, [authentification]);
+    }, [auth, authentification]);
 
     return { authentification, logIn, logOut };
 
