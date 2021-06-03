@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../Functions/context';
 import styled from 'styled-components';
 import logoImg from '../../image/logo.svg';
 import userImg from '../../image/user.svg';
-import { ButtonLogIn, ButtonLogOut } from '../Styled/Buttons';
+import { ButtonLog } from '../Styled/Buttons';
 
 const NavBarStyled = styled.header`
     position: fixed;
@@ -41,23 +42,28 @@ const Welcome = styled.p`
     text-align: center;
 `;
 
-export const NavBar = ({ authentification, logIn, logOut }) => (
-    <NavBarStyled>
-        <Logo>
-            <ImgLogo src={logoImg} alt="logo"/>
-            <H1>MrMagamba®</H1>
-        </Logo>
-        {authentification ?
-        <UserLog onClick={logOut}>
-            <Welcome>{authentification.displayName}</Welcome>
-            <ButtonLogOut>X</ButtonLogOut>
-        </UserLog> :
-        <UserLog onClick={logIn}>
-            <Welcome>Войти</Welcome>
-            <ButtonLogIn>
-                <img src={userImg} alt="Поесть"></img>
-            </ButtonLogIn>
-        </UserLog>
-        }
-    </NavBarStyled>
-)
+export const NavBar = () => {
+
+    const { auth: { authentification, logIn, logOut } } = useContext(Context);
+    // вместо const { authentification, logIn, logOut } = auth;
+    return (
+        <NavBarStyled>
+            <Logo>
+                <ImgLogo src={logoImg} alt="logo"/>
+                <H1>MrMagamba®</H1>
+            </Logo>
+            {authentification ?
+            <UserLog onClick={logOut}>
+                <Welcome>{authentification.displayName}</Welcome>
+                <ButtonLog>X</ButtonLog>
+            </UserLog> :
+            <UserLog onClick={logIn}>
+                <Welcome>Войти</Welcome>
+                <ButtonLog>
+                    <img src={userImg} alt="Поесть"></img>
+                </ButtonLog>
+            </UserLog>
+            }
+        </NavBarStyled>
+    )
+}

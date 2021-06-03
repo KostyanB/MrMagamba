@@ -1,23 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../Functions/context';
 import styled from 'styled-components';
-import { Overlay, OrderTitle, Total, TotalPrice } from '../Styled/Components';
-import { ButtonApprove } from '../Styled/Buttons';
+import { Overlay, ModalSmall, OrderTitle, Total, TotalPrice } from '../Styled/Components';
+import { ButtonCheckout } from '../Styled/Buttons';
 import { formatCurrency, totalPriceItems, projection } from '../Functions/secondaryFunc';
 
-const Modal = styled.div`
-    background-color: #33d9de;
-    color: #002878;
-    width: 400px;
-    padding: 30px;
-    display: flex;
-    flex-direction: column;
-`;
 const Text = styled.h3`
     text-align: center;
     margin-bottom: 30px;
 `;
-
-const rulesData = { // правила обработки заказа
+// правила обработки заказа
+const rulesData = {
     itemName: ['name'],
     price: ['price'],
     count: ['count'],
@@ -26,7 +19,7 @@ const rulesData = { // правила обработки заказа
     choice: ['choice', item => item ? item : 'no choices'],
 };
 
-const sendOrder = (dataBase, orders, authentification) => {
+const sendOrder = (dataBase, orders, authentification, setOpenThanks) => {
     const newOrder = orders.map(projection(rulesData));
 
     dataBase.ref('orders').push().set({
@@ -34,15 +27,21 @@ const sendOrder = (dataBase, orders, authentification) => {
         email: authentification.email,
         order: newOrder
     });
+    setOpenThanks(true);
+
 };
 
-export const OrderConfirm = ({
-        orders, setOrders,
-        authentification,
-        setOpenOrderConfirm,
-        firebaseDatabase,
-    }) => {
+export const OrderConfirm = () => {
+
+    const { auth: { authentification },
+        orders: { orders, setOrders },
+        orderConfirm: { setOpenOrderConfirm },
+        thanks: { setOpenThanks },
+        firebaseDatabase
+    } = useContext(Context);
     const dataBase = firebaseDatabase();
+
+
     const total = orders.reduce((result, order)=> //к-во товара
                 totalPriceItems(order) + result, 0);
 
@@ -53,21 +52,22 @@ export const OrderConfirm = ({
     }
     return (
         <Overlay id="confirm-overlay" onClick={closeModal}>
-            <Modal>
+            <ModalSmall>
                 <OrderTitle>{authentification.displayName}</OrderTitle>
                 <Text>Подтвердите Ваш заказ</Text>
                 <Total>
                     <span>Общая сумма:</span>
                     <TotalPrice>{formatCurrency(total)}</TotalPrice>
                 </Total>
-                <ButtonApprove onClick={() => {
+                <ButtonCheckout onClick={() => {
                         setOpenOrderConfirm(false);
-                        sendOrder(dataBase, orders, authentification);
+                        sendOrder(dataBase, orders, authentification, setOpenThanks);
                         setOrders([]);
+
                     }}>
                     Подтвердить
-                </ButtonApprove>
-            </Modal>
+                </ButtonCheckout>
+            </ModalSmall>
         </Overlay>
-    )
+    );
 }

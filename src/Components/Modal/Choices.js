@@ -1,13 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context, ContextItem } from '../Functions/context';
 import styled from 'styled-components';
-import { SelectWrap, SelectLabel } from './selectionWrapper';
+import { SelectWrap, SelectLabel } from '../Styled/Components';
 
 const ChoiceRadio = styled.input`
     cursor: pointer;
     margin-right: 5px;
 `;
 
-export function Choices({ openItem, choice, changeChoices }) {
+export function Choices() {
+
+    const { openItem: { openItem } } = useContext(Context);
+    const { choices: { choice, changeChoices } } = useContext(ContextItem);
+
     return (
         <>
             <h3>Выберите:</h3>

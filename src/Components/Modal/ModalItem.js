@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context, ContextItem } from '../Functions/context';
 import styled from 'styled-components';
 import { ButtonCheckout } from '../Styled/Buttons';
-import { Overlay } from '../Styled/Components';
+import { Banner, Overlay } from '../Styled/Components';
 import { CountItem } from './CountItem';
 import { useCount } from '../Hooks/useCount';
 import { useToppings } from '../Hooks/useToppings';
@@ -18,12 +19,9 @@ const Modal = styled.div`
     /*transform: translateY(-5%);*/
     /*box-shadow: 0px 0px 5px 3px rgba(0, 40, 120, 0.3);*/
 `;
-const Banner = styled.div`
-    width: 100%;
+const ModalBanner = styled(Banner)`
     height: 200px;
     background-image: url(${({ img }) => img});
-    background-size: cover;
-    background-position: center;
 `;
 const Content = styled.section `
     display: flex;
@@ -44,19 +42,17 @@ const TotalPriceItem = styled.div `
     justify-content: space-between;
 `;
 
-// const animModal = () =>{
-//     const modalForm = document.getElementById('modal');
-//     console.log('modalForm: ', modalForm);
+export const ModalItem = () => {
 
+    const { openItem: { openItem, setOpenItem },
+            orders: { orders, setOrders } } = useContext(Context);
 
-// }
-
-export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
-
-    const counter = useCount(openItem.count); //передали исх количество при откр мод
+    //передаем исх количество при откр мод
+    const counter = useCount(openItem.count);
     const toppings = useToppings(openItem);
     const choices = useChoices(openItem);
-    const isEdit = openItem.index > -1; //true если из заказов, из меню index - undef -> false
+    //true если из заказов, из меню index - undef -> false
+    const isEdit = openItem.index > -1;
 
     const closeModal = e => {
         if(e.target.id === 'overlay') {
@@ -83,17 +79,22 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
     }
 
     return (
+        <ContextItem.Provider value={{
+            choices,
+            toppings,
+            counter,
+        }}>
         <Overlay id="overlay" onClick={closeModal}>
             <Modal id="modal">
-                <Banner img={openItem.img}/>
+                <ModalBanner img={openItem.img}/>
                 <Content>
                     <HeaderContent>
                         <div>{openItem.name}</div>
                         <div>{formatCurrency(openItem.price)}</div>
                     </HeaderContent>
-                    <CountItem {...counter}/>
-                    {openItem.toppings && <Toppings {...toppings}/>} {/*выводим только если есть*/}
-                    {openItem.choices && <Choices {...choices} openItem={openItem}/>}
+                    <CountItem/> {/*выводим только если есть*/}
+                    {openItem.toppings && <Toppings/>}
+                    {openItem.choices && <Choices/>}
                     <TotalPriceItem>
                         <span>Цена</span>
                         <span>{formatCurrency(totalPriceItems(order))}</span>
@@ -105,6 +106,6 @@ export const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
                 </Content>
             </Modal>
         </Overlay>
-
+        </ContextItem.Provider>
     )
 };

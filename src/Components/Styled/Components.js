@@ -1,5 +1,27 @@
 import styled from 'styled-components';
 
+export const Banner = styled.div`
+    width: 100%;
+    background-position: center;
+    background-size: cover;
+`;
+
+export const ModalSmall = styled.div`
+    background-color: #33d9de;
+    color: #002878;
+    width: 400px;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+`;
+
+export const OrderTitle = styled.h2`
+    text-align: center;
+    font-weight: 400;
+    line-height: 68px;
+    margin-bottom: 30px;
+`;
+
 export const Overlay = styled.div`
     position: fixed;
     display: flex;
@@ -13,11 +35,16 @@ export const Overlay = styled.div`
     z-index: 20;
 `;
 
-export const OrderTitle = styled.h2`
-    text-align: center;
-    font-weight: 400;
-    line-height: 68px;
-    margin-bottom: 30px;
+export const SelectWrap = styled.div`
+    max-width: 500px;
+    margin: 0 auto;
+    column-count: 2;
+    column-gap: 5px;
+`;
+
+export const SelectLabel = styled.label`
+    cursor: pointer;
+    display: block;
 `;
 
 export const Total = styled.div`

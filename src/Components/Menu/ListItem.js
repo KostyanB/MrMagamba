@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { Context } from '../Functions/context';
 import styled from 'styled-components';
 import { formatCurrency } from '../Functions/secondaryFunc';
 
@@ -41,17 +42,21 @@ const Item = styled.li`
     }
 `;
 
-export const ListItem = ({ itemList, setOpenItem }) => (
-    <List>
-        {itemList.map(item => (
-            <Item    /*key for rerender autentification objects*/
-                key={item.id}
-                img={item.img}
-                onClick={() => setOpenItem(item)}>
-                <p>{item.name}</p>
-                <p>{formatCurrency(item.price)}</p>
-            </Item>
-        ))}
+export const ListItem = ({ itemList }) => {
 
-    </List>
-);
+    const { openItem: { setOpenItem } } = useContext(Context);
+
+    return (
+        <List>
+            {itemList.map(item => (
+                <Item    /*key for rerender autentification objects*/
+                    key={item.id}
+                    img={item.img}
+                    onClick={() => setOpenItem(item)}>
+                    <p>{item.name}</p>
+                    <p>{formatCurrency(item.price)}</p>
+                </Item>
+            ))}
+        </List>
+    )
+};

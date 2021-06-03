@@ -20,7 +20,6 @@ export const ButtonCheckout = styled(Button)`
     width: fit-content;
     margin: 0 auto;
     padding: 8px 30px;
-
     &:disabled {
         background-image: none;
         box-shadow: none;
@@ -28,18 +27,9 @@ export const ButtonCheckout = styled(Button)`
     }
 `;
 
-export const ButtonApprove = styled(ButtonCheckout)`
-    color: #33d9de;
-    text-shadow: 1px 1px 1px #002878;
-`;
-
-export const ButtonLogIn = styled(Button)`
+export const ButtonLog = styled(Button)`
     width: 60px;
     height: 60px;
-`;
-
-export const ButtonLogOut = styled(ButtonLogIn)`
     font-size: 30px;
     font-weight: 800;
 `;
-

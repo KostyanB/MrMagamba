@@ -1,13 +1,16 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { ContextItem } from '../Functions/context';
 import styled from 'styled-components';
-import { SelectWrap, SelectLabel } from './selectionWrapper';
+import { SelectWrap, SelectLabel } from '../Styled/Components';
 
 const ToppingCheckbox = styled.input`
     cursor: pointer;
     margin-right: 5px;
 `;
 
-export function Toppings( {toppings, checkToppings}) {
+export function Toppings() {
+
+    const { toppings: { toppings, checkToppings } } = useContext(ContextItem)
     return (
         <>
             <h3>Добавки:</h3>
@@ -22,7 +25,6 @@ export function Toppings( {toppings, checkToppings}) {
                         {item.name}
                     </SelectLabel>
                 ))}
-
             </SelectWrap>
         </>
     )

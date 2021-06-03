@@ -7,12 +7,15 @@ import { NavBar } from './Components/NavBar/NavBar';
 import { Menu } from './Components/Menu/Menu';
 import { ModalItem } from './Components/Modal/ModalItem';
 import { Order } from './Components/Order/Order';
+import { OrderConfirm } from './Components/Order/OrderConfirm';
+import { Thanks } from './Components/Order/Thanks';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
 import { useTitle } from './Components/Hooks/useTitle';
-import { OrderConfirm } from './Components/Order/OrderConfirm';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
+import { useThanks } from './Components/Hooks/useThanks';
+import { Context } from './Components/Functions/context'
 
 const firebaseConfig = {
   apiKey: "AIzaSyB01WzjQ2NOa3yW-6lofRB1xDcEu5-pQ-U",
@@ -31,25 +34,26 @@ function App() {
   const openItem = useOpenItem();
   const orders = useOrders();
   const orderConfirm = useOrderConfirm();
+  const thanks = useThanks();
   useTitle(openItem.openItem);
 
   return (
-    <>
+    <Context.Provider value={{
+      auth,
+      openItem,
+      orders,
+      orderConfirm,
+      thanks,
+      firebaseDatabase: firebase.database,
+    }}>
       <GlobalStyle/>
-      <NavBar {...auth}/>
-      <Order
-        {...orders}
-        {...openItem}
-        {...auth}
-        {...orderConfirm}
-        />
-      <Menu {...openItem}/>
-      { openItem.openItem && <ModalItem {...openItem} {...orders}
-        /> } {/*верстка будет если есть openItem*/}
-      { orderConfirm.openOrderConfirm && <OrderConfirm {...orders} {...auth} {...orderConfirm}
-        firebaseDatabase={firebase.database}
-        />}
-    </>
+      <NavBar/>
+      <Order/>
+      <Menu/> {/*верстка будет если условие перед &&*/}
+      {openItem.openItem && <ModalItem/>}
+      {orderConfirm.openOrderConfirm && <OrderConfirm/>}
+      {thanks.openThanks && <Thanks/>}
+    </Context.Provider>
   );
 }
 
