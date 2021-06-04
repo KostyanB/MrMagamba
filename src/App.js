@@ -15,7 +15,8 @@ import { useAuth } from './Components/Hooks/useAuth';
 import { useTitle } from './Components/Hooks/useTitle';
 import { useOrderConfirm } from './Components/Hooks/useOrderConfirm';
 import { useThanks } from './Components/Hooks/useThanks';
-import { Context } from './Components/Functions/context'
+import { Context } from './Components/Functions/context';
+import styled from 'styled-components';
 
 const firebaseConfig = {
   apiKey: "AIzaSyB01WzjQ2NOa3yW-6lofRB1xDcEu5-pQ-U",
@@ -29,6 +30,12 @@ const firebaseConfig = {
 
 firebase.initializeApp(firebaseConfig);
 
+const Main = styled.div`
+  display: flex;
+  @media (max-width: 768px) {
+    flex-direction: column;
+  }
+`;
 function App() {
   const auth = useAuth(firebase.auth);
   const openItem = useOpenItem();
@@ -48,8 +55,11 @@ function App() {
     }}>
       <GlobalStyle/>
       <NavBar/>
-      <Order/>
-      <Menu/> {/*верстка будет если условие перед &&*/}
+        <Main>
+          <Order/>
+          <Menu/>
+        </Main>
+      {/*верстка будет если условие перед &&*/}
       {openItem.openItem && <ModalItem/>}
       {orderConfirm.openOrderConfirm && <OrderConfirm/>}
       {thanks.openThanks && <Thanks/>}

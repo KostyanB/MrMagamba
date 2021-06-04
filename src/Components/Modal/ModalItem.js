@@ -14,7 +14,7 @@ import { Choices } from '../Modal/Choices';
 const Modal = styled.div`
     background-color: #33d9de;
     width: 600px;
-    height: 600px;
+    height: fit-content;
     color: #002878;
     /*transform: translateY(-5%);*/
     /*box-shadow: 0px 0px 5px 3px rgba(0, 40, 120, 0.3);*/

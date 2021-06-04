@@ -4,6 +4,9 @@ export const Banner = styled.div`
     width: 100%;
     background-position: center;
     background-size: cover;
+    @media (max-width: 768px) {
+        display: none;
+    }
 `;
 
 export const ModalSmall = styled.div`
@@ -20,6 +23,10 @@ export const OrderTitle = styled.h2`
     font-weight: 400;
     line-height: 68px;
     margin-bottom: 30px;
+    @media (max-width: 768px) {
+        margin-bottom: 0;
+        font-size: 20px;
+    }
 `;
 
 export const Overlay = styled.div`

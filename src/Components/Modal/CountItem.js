@@ -20,7 +20,16 @@ const ButtonCount = styled.button`
     width: 30px;
     height: 30px;
     color: #33d9de;
-
+`;
+const Span = styled.span`
+    @media (max-width: 376px) {
+        display: none;
+    }
+`;
+const InputCount = styled.div`
+    @media (max-width: 376px) {
+        margin: 0 auto;
+    }
 `;
 
 export function CountItem() {
@@ -28,13 +37,13 @@ export function CountItem() {
     const { counter: { count, onChange, validCount } } = useContext(ContextItem)
     return (
         <CountWrapper>
-            <span>Количество</span>
-            <div>
+            <Span>Количество</Span>
+            <InputCount>
                 <ButtonCount disabled={count <= 1} onClick={() => validCount(count - 1)}>-</ButtonCount>
                 <CountInput type='number' min='1' max='100' onChange={onChange}
                             value={count}/>
                 <ButtonCount disabled={count >= 100} onClick={() => validCount(+count + 1)}>+</ButtonCount>
-            </div>
+            </InputCount>
         </CountWrapper>
     )
 }

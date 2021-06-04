@@ -4,11 +4,18 @@ import { ListItem } from './ListItem';
 import { Banner } from '../Styled/Components';
 import { useFetch } from '../Hooks/useFetch';
 import bannerImg from '../../image/banner.png';
+import { Preloader, ErrorLoad } from '../Styled/Preloader'
 
-const MenuStyled = styled.main`
+const MenuStyled = styled.section`
     background-color: #ccc;
     margin-top: 80px;
     margin-left: 380px;
+    width: calc(100% - 380px);
+    height: calc(100% - 80px);
+    @media (max-width: 768px) {
+        margin-left: 0;
+        width: 100%;
+    }
 `;
 const SectionMenu = styled.section`
     padding: 30px;
@@ -41,8 +48,8 @@ export const Menu = () => {
                 <ListItem itemList={dbMenu.other}/>
             </SectionMenu>
             </> : res.error ?
-            <div>Sorry, we will fix it soon...</div> :
-            <div>Loading...</div>
+            <ErrorLoad>Sorry, nework error. We will fix it soon...</ErrorLoad> :
+            <Preloader/>
             }
         </MenuStyled>
     )

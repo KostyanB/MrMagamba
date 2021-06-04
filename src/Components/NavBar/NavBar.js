@@ -27,19 +27,27 @@ const Logo = styled.div`
 const H1 = styled.h1`
     font-size: 30px;
     margin-left: 15px;
+    @media (max-width: 376px) {
+        display: none;
+    }
 `;
 const ImgLogo = styled.img`
     width: 70px;
+    @media (max-width: 240px) {
+        display: none;
+    }
 `;
 const UserLog = styled.div`
     display: flex;
     align-items: center;
-    margin-right: 20px;
 `;
 const Welcome = styled.p`
     margin-right: 10px;
     width: 120px;
     text-align: center;
+    @media (max-width: 576px) {
+        display: none;
+    }
 `;
 
 export const NavBar = () => {

@@ -7,16 +7,23 @@ import { OrderListItem } from './OrderListItem';
 import { formatCurrency, totalPriceItems } from '../Functions/secondaryFunc';
 
 const OrderStyled = styled.section`
-    position: fixed;
     display: flex;
     flex-direction: column;
     top: 80px;
     left: 0;
-    background: #fff;
-    width: 380px;
+    background: #ddd;
+    position: fixed;
     height: calc(100% - 80px);
-    box-shadow: 4px 0px 5px rgba(0, 40, 120, 0.25);
+    width: 380px;
+    box-shadow: 5px 0px 5px rgba(0, 40, 120, 0.25);
     padding: 20px;
+    @media (max-width: 768px) {
+    position: relative;
+    height: fit-content;
+    width: 100%;
+    box-shadow: 0px 5px 5px rgba(0, 40, 120, 0.25);
+  }
+
 `;
 const OrderContent = styled.div`
     flex-grow: 1; {/*растянуть контент */}
@@ -26,6 +33,7 @@ const OrderList = styled.ul`
 `;
 const EmptyList = styled.p`
     text-align: center;
+
 `;
 
 export const Order = () => {
