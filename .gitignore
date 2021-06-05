@@ -32,3 +32,4 @@ package.json
 .eslintrc
 /.vscode/
 .
+/.firebase
