@@ -11,9 +11,12 @@ const tranporter = nodemailer.createTransport({
     }
 });
 
+const formatCurrency = val => val.toLocaleString('ru-RU', {style: 'currency', currency: 'RUB'});
+
 tranporter.use('compile', htmlToText());
 
 const sendOrderEmail = data => {
+    let total = 0;
     const options = {
         from: `MrMagamba <${email}>`,
         to: data.email,
@@ -23,12 +26,25 @@ const sendOrderEmail = data => {
                 <h2>Добрый день! ${data.nameClient}</h2>
                 <h3>Ваш заказ:</h3>
                 <ul>
-                    ${data.order.map(({ itemName, count, price }) => (
-                        `<li>${itemName} - ${count} шт., цена ${price * count} руб.</li>`
-                    ))}
+                    ${data.order.map(({ itemName, count, price, choice, topping }) => {
+                        if (choice !== 'no choices') {
+                            choice = `Ваш выбор: ${choice}`;
+                        } else {
+                            choice = '';
+                        }
+                        if (topping !== 'no topping') {
+                            price = price + (price * 0.1 * topping.length)
+                            topping = `Добавки: ${topping.join(', ')}`;
+
+                        } else {
+                            topping = '';
+                        }
+                        total += price * count;
+                        const liElem = `<li>${itemName}: - ${count} шт., по цене ${formatCurrency(price)}. ${choice}${topping}</li>`;
+                        return liElem;
+                    })}
                 </ul>
-                <p>Итого: ${data.order.reduce((sum, item) =>
-                    sum + (item.price + item.count), 0)} руб.</p>
+                <p>Итого: ${formatCurrency(total)}</p>
                 <small>Ожидайте курьера.</small>
             </div>
         `,
@@ -40,4 +56,8 @@ const sendOrderEmail = data => {
 
 
 exports.sendUserEmail = functions.database.ref('orders/{pushID}')
-    .onCreate(order => sendOrderEmail(order.val()));
+    .onCreate(order => {
+        console.log('order: ', order);
+
+        sendOrderEmail(order.val())
+    });

@@ -19,7 +19,7 @@ import { Context } from './Components/Functions/context';
 import styled from 'styled-components';
 
 const firebaseConfig = {
-  apiKey: "",
+  apiKey: "AIzaSyB01WzjQ2NOa3yW-6lofRB1xDcEu5-pQ-U",
   authDomain: "mrmagamba.firebaseapp.com",
   databaseURL: "https://mrmagamba-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "mrmagamba",

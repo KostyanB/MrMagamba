@@ -20,12 +20,11 @@ export const ModalSmall = styled.div`
 
 export const OrderTitle = styled.h2`
     text-align: center;
-    font-weight: 400;
     line-height: 68px;
     margin-bottom: 30px;
     @media (max-width: 768px) {
-        margin-bottom: 0;
-        font-size: 20px;
+        margin-bottom: 10px;
+        line-height: 40px;
     }
 `;
 

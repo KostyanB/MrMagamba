@@ -1,14 +1,9 @@
 import React, { useContext } from 'react';
 import { Context } from '../Functions/context';
-import styled from 'styled-components';
 import { Overlay, ModalSmall, OrderTitle, Total, TotalPrice } from '../Styled/Components';
 import { ButtonCheckout } from '../Styled/Buttons';
 import { formatCurrency, totalPriceItems, projection } from '../Functions/secondaryFunc';
 
-const Text = styled.h3`
-    text-align: center;
-    margin-bottom: 30px;
-`;
 // правила обработки заказа
 const rulesData = {
     itemName: ['name'],
@@ -54,7 +49,7 @@ export const OrderConfirm = () => {
         <Overlay id="confirm-overlay" onClick={closeModal}>
             <ModalSmall>
                 <OrderTitle>{authentification.displayName}</OrderTitle>
-                <Text>Подтвердите Ваш заказ</Text>
+                <OrderTitle>Подтвердите Ваш заказ</OrderTitle>
                 <Total>
                     <span>Общая сумма:</span>
                     <TotalPrice>{formatCurrency(total)}</TotalPrice>
