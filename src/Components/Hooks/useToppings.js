@@ -4,12 +4,12 @@ import { useState } from 'react';
 const getTopping = toppings => toppings.map(item => ({
         name: item,
         checked: false,
-})) // получим [{name: 'Лук', checked: false}, {name: 'Соус', checked: false}]
+})); // получим [{name: 'Лук', checked: false}, {name: 'Соус', checked: false}]
 
 
 export function useToppings(openItem) {
 
-    const readyTopping = openItem.topping ? openItem.topping : //были  -их и вернем
+    const readyTopping = openItem.topping ? openItem.topping : //были?  -их и вернем
                         openItem.toppings ? getTopping(openItem.toppings) :
                         []; //наличие топпингов?
     const [toppings, setToppings] = useState(readyTopping);
@@ -22,7 +22,7 @@ export function useToppings(openItem) {
             }
             return newItem;
         }))
-    }
+    };
 
     return {toppings, checkToppings};
-}
+};

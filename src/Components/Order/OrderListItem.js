@@ -62,5 +62,5 @@ export const OrderListItem = ( { order, index, deleteItem }) => {
             {order.choice && <Choices>Ваш выбор: {order.choice}</Choices>}
 
         </OrderItemStyled>
-    )
+    );
 };

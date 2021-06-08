@@ -13,19 +13,19 @@ export function Toppings() {
     const { toppings: { toppings, checkToppings } } = useContext(ContextItem)
     return (
         <>
-            <h3>Добавки:</h3>
-            <SelectWrap>
-                {toppings.map((item, i) => (
-                    <SelectLabel key={i}>
-                        <ToppingCheckbox
-                            type="checkbox"
-                            checked={item.checked}
-                            onChange={() => checkToppings(i)} //передали index топпинга
-                            />
-                        {item.name}
-                    </SelectLabel>
-                ))}
-            </SelectWrap>
+        <h3>Добавки:</h3>
+        <SelectWrap>
+            {toppings.map((item, i) => (
+                <SelectLabel key={i}>
+                    <ToppingCheckbox
+                        type="checkbox"
+                        checked={item.checked}
+                        onChange={() => checkToppings(i)} //передали index топпинга
+                        />
+                    {item.name}
+                </SelectLabel>
+            ))}
+        </SelectWrap>
         </>
     )
-}
+};

@@ -9,4 +9,4 @@ export function useChoices(openItem) {
     }
 
     return {choice, changeChoices};
-}
+};

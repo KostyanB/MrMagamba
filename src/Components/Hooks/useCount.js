@@ -12,4 +12,4 @@ export function useCount(startCount) {
         validCount(value)
     }
     return {count, setCount, onChange, validCount};
-}
+};

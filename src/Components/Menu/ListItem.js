@@ -5,15 +5,15 @@ import { formatCurrency } from '../Functions/secondaryFunc';
 
 const List = styled.ul`
     display: flex;
-    justify-content: space-around; {/*для переноса элем на нов строку*/}
+    justify-content: space-around;
     flex-wrap: wrap;
 
 `;
 const Item = styled.li`
     position: relative;
-    width: 400px; {/*из верстки в figma*/}
+    width: 400px;
     height: 155px;
-    background-image: ${({ img }) => `url(${img})`}; {/*{ img } - это деструкт props */}
+    background-image: ${({ img }) => `url(${img})`}; {/*{ img }- деструкт props */}
     background-position: center;
     background-size: cover;
     margin-top: 30px;
@@ -49,7 +49,7 @@ export const ListItem = ({ itemList }) => {
     return (
         <List>
             {itemList.map(item => (
-                <Item    /*key for rerender autentification objects*/
+                <Item
                     key={item.id}
                     img={item.img}
                     onClick={() => setOpenItem(item)}>

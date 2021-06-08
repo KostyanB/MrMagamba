@@ -45,7 +45,7 @@ export const Order = () => {
     const deleteItem = index => {
         const newOrders = orders.filter((item, i) => index !== i);
         setOrders(newOrders);
-    }
+    };
 
     const total = orders.reduce((result, order)=> //к-во товара
                 totalPriceItems(order) + result, 0)
@@ -82,5 +82,5 @@ export const Order = () => {
                 null
             }
         </OrderStyled>
-    )
-}
+    );
+};

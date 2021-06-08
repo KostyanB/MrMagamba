@@ -165,5 +165,4 @@ export const Preloader = () => (
       <Dash4/>
     </Loader>
   </LoadWrap>
-
 );

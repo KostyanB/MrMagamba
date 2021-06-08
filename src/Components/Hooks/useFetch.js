@@ -18,4 +18,4 @@ export const useFetch = () => {
     }, []); // пустой массив чтобы запустилась 1 раз
 
     return { responce, error };
-}
+};

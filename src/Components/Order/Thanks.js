@@ -20,7 +20,7 @@ export const Thanks = () => {
         if(e.target.id === 'thanks-overlay') {
             setOpenThanks(false);
         }
-    }
+    };
     return (
         <Overlay id="thanks-overlay" onClick={closeThanks}>
             <ThanksModal>
@@ -31,5 +31,5 @@ export const Thanks = () => {
                 </ButtonThanks>
             </ThanksModal>
         </Overlay>
-    )
-}
+    );
+};

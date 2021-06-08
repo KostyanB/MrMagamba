@@ -53,7 +53,7 @@ const Welcome = styled.p`
 export const NavBar = () => {
 
     const { auth: { authentification, logIn, logOut } } = useContext(Context);
-    // вместо const { authentification, logIn, logOut } = auth;
+
     return (
         <NavBarStyled>
             <Logo>
@@ -73,5 +73,5 @@ export const NavBar = () => {
             </UserLog>
             }
         </NavBarStyled>
-    )
-}
+    );
+};

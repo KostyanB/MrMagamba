@@ -19,13 +19,13 @@ import { Context } from './Components/Functions/context';
 import styled from 'styled-components';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyB01WzjQ2NOa3yW-6lofRB1xDcEu5-pQ-U",
-  authDomain: "mrmagamba.firebaseapp.com",
-  databaseURL: "https://mrmagamba-default-rtdb.europe-west1.firebasedatabase.app",
-  projectId: "mrmagamba",
-  storageBucket: "mrmagamba.appspot.com",
-  messagingSenderId: "1069543412935",
-  appId: "1:1069543412935:web:2a8f5046979020db591ae2"
+  apiKey: "yourApiKey",
+  authDomain: "yourDomain.firebaseapp.com",
+  databaseURL: "https://yourDatabaseURL",
+  projectId: "yourProjectId",
+  storageBucket: "yourStorageBucket",
+  messagingSenderId: "yourMessagingSenderId",
+  appId: "yourAppId"
 };
 
 firebase.initializeApp(firebaseConfig);

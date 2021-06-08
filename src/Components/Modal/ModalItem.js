@@ -16,8 +16,6 @@ const Modal = styled.div`
     width: 600px;
     height: fit-content;
     color: #002878;
-    /*transform: translateY(-5%);*/
-    /*box-shadow: 0px 0px 5px 3px rgba(0, 40, 120, 0.3);*/
 `;
 const ModalBanner = styled(Banner)`
     height: 200px;
@@ -48,9 +46,9 @@ export const ModalItem = () => {
             orders: { orders, setOrders } } = useContext(Context);
 
     //передаем исх количество при откр мод
-    const counter = useCount(openItem.count);
-    const toppings = useToppings(openItem);
-    const choices = useChoices(openItem);
+    const counter = useCount(openItem.count),
+        toppings = useToppings(openItem),
+        choices = useChoices(openItem);
     //true если из заказов, из меню index - undef -> false
     const isEdit = openItem.index > -1;
 
@@ -58,7 +56,7 @@ export const ModalItem = () => {
         if(e.target.id === 'overlay') {
             setOpenItem(null);
         }
-    }
+    };
     const order = {
         ...openItem, // передали все свойства
         count: counter.count,
@@ -71,12 +69,12 @@ export const ModalItem = () => {
         newOrders[openItem.index] = order;
         setOrders(newOrders);
         setOpenItem(null);
-    }
+    };
 
     const addToOrder = () => {
         setOrders([...orders, order]); //новый заказ в конец массива старых
         setOpenItem(null); //закрыли модалку
-    }
+    };
 
     return (
         <ContextItem.Provider value={{

@@ -16,6 +16,7 @@ const Button = styled.button`
         background-position: 0 0;
     }
 `;
+
 export const ButtonCheckout = styled(Button)`
     width: fit-content;
     margin: 0 auto;

@@ -44,7 +44,7 @@ export const OrderConfirm = () => {
         if(e.target.id === 'confirm-overlay') {
             setOpenOrderConfirm(false);
         }
-    }
+    };
     return (
         <Overlay id="confirm-overlay" onClick={closeModal}>
             <ModalSmall>
@@ -65,4 +65,4 @@ export const OrderConfirm = () => {
             </ModalSmall>
         </Overlay>
     );
-}
+};

@@ -15,21 +15,21 @@ export function Choices() {
 
     return (
         <>
-            <h3>Выберите:</h3>
-            <SelectWrap>
-                {openItem.choices.map(item => (
-                    <SelectLabel key={item}>
-                        <ChoiceRadio
-                            type="radio"
-                            name="choices"
-                            checked={choice === item}
-                            value={item}
-                            onChange={changeChoices}
-                            />
-                        {item}
-                    </SelectLabel>
-                ))}
-            </SelectWrap>
+        <h3>Выберите:</h3>
+        <SelectWrap>
+            {openItem.choices.map(item => (
+                <SelectLabel key={item}>
+                    <ChoiceRadio
+                        type="radio"
+                        name="choices"
+                        checked={choice === item}
+                        value={item}
+                        onChange={changeChoices}
+                        />
+                    {item}
+                 </SelectLabel>
+            ))}
+        </SelectWrap>
         </>
     )
-}
+};
