@@ -52,11 +52,8 @@ export const ModalItem = () => {
     //true если из заказов, из меню index - undef -> false
     const isEdit = openItem.index > -1;
 
-    const closeModal = e => {
-        if(e.target.id === 'overlay') {
-            setOpenItem(null);
-        }
-    };
+    const closeModal = e => (e.target.id === 'overlay') && setOpenItem(null);
+
     const order = {
         ...openItem, // передали все свойства
         count: counter.count,

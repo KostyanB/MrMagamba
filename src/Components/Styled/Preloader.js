@@ -27,11 +27,16 @@ const Loader = styled.div`
 `;
 
 const Dash = styled.div`
-  margin: 0 30px;
-  width: 50px;
-  height: 20px;
-  border-radius: 10px;
+  margin: 0 35px;
+  width: 60px;
+  height: 40px;
+  border-radius: 15px;
   background: #33d9de;
+  text-align: center;
+  color: #002878;
+  font-weight: 800;
+  font-size: 30px;
+  line-height: 40px;
 `;
 
 const Dash1 = styled(Dash)`
@@ -159,10 +164,10 @@ const Dash4 = styled(Dash)`
 export const Preloader = () => (
   <LoadWrap>
     <Loader>
-      <Dash1/>
-      <Dash2/>
-      <Dash3/>
-      <Dash4/>
+      <Dash1>L</Dash1>
+      <Dash2>O</Dash2>
+      <Dash3>A</Dash3>
+      <Dash4>D</Dash4>
     </Loader>
   </LoadWrap>
 );

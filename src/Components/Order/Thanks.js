@@ -16,11 +16,8 @@ export const Thanks = () => {
     const { auth: { authentification },
             thanks: { setOpenThanks } } = useContext(Context);
 
-    const closeThanks = e => {
-        if(e.target.id === 'thanks-overlay') {
-            setOpenThanks(false);
-        }
-    };
+    const closeThanks = e => (e.target.id === 'thanks-overlay') && setOpenThanks(false);
+
     return (
         <Overlay id="thanks-overlay" onClick={closeThanks}>
             <ThanksModal>

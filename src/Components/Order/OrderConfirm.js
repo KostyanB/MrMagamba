@@ -40,11 +40,8 @@ export const OrderConfirm = () => {
     const total = orders.reduce((result, order)=> //к-во товара
                 totalPriceItems(order) + result, 0);
 
-    const closeModal = e => {
-        if(e.target.id === 'confirm-overlay') {
-            setOpenOrderConfirm(false);
-        }
-    };
+    const closeModal = e => (e.target.id === 'confirm-overlay') && setOpenOrderConfirm(false);
+
     return (
         <Overlay id="confirm-overlay" onClick={closeModal}>
             <ModalSmall>

@@ -27,21 +27,17 @@ const sendOrderEmail = data => {
                 <h3>Ваш заказ:</h3>
                 <ul>
                     ${data.order.map(({ itemName, count, price, choice, topping }) => {
-                        if (choice !== 'no choices') {
-                            choice = `Ваш выбор: ${choice}`;
-                        } else {
-                            choice = '';
-                        }
-                        if (topping !== 'no topping') {
-                            price = price + (price * 0.1 * topping.length)
-                            topping = `Добавки: ${topping.join(', ')}`;
+                        (choice === 'no choices') ? choice = '' : choice = `Ваш выбор: ${choice}`;
 
-                        } else {
-                            topping = '';
-                        }
+                        (topping === 'no topping') ? topping = '' : function(){
+                            price = price + (price * 0.1 * topping.length);
+                            topping = `Добавки: ${topping.join(', ')}`;
+                        }();
+
                         total += price * count;
-                        const liElem = `<li>${itemName}: - ${count} шт., по цене ${formatCurrency(price)}. ${choice}${topping}</li>`;
-                        return liElem;
+                        return (
+                            `<li>${itemName}: - ${count} шт., по цене ${formatCurrency(price)}. ${choice}${topping}</li>`
+                            );
                     })}
                 </ul>
                 <p>Итого: ${formatCurrency(total)}</p>
