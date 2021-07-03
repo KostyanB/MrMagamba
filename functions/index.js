@@ -52,8 +52,4 @@ const sendOrderEmail = data => {
 
 
 exports.sendUserEmail = functions.database.ref('orders/{pushID}')
-    .onCreate(order => {
-        console.log('order: ', order);
-
-        sendOrderEmail(order.val())
-    });
+    .onCreate(order => sendOrderEmail(order.val()));
