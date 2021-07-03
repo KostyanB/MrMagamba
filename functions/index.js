@@ -38,7 +38,7 @@ const sendOrderEmail = data => {
                         return (
                             `<li>${itemName}: - ${count} шт., по цене ${formatCurrency(price)}. ${choice}${topping}</li>`
                             );
-                    })}
+                    }).join('')}
                 </ul>
                 <p>Итого: ${formatCurrency(total)}</p>
                 <small>Ожидайте курьера.</small>
