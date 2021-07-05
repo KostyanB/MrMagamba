@@ -4,7 +4,7 @@
 
 ## О приложениии
 
-Демо-версия приложения доступна на [MrMagamba](https://mrmagamba.web.app/).
+Демо-версия приложения доступна на [MrMagamba](https://mrmagamba.web.app/), [Video](https://drive.google.com/file/d/1CbXpgBd4MPq74Dcu4RGdxGxQ4T1T4Eep/view?usp=sharing).
 
 * Регистрация пользователя Google-auth;
 * Онлайн прием заказов с помощью;
